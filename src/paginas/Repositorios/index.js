@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 import api from '../../servicos/api';
 
-export default function Repositorios({ route }) {
+export default function Repositorios({ route, navigation }) {
     const [repo, setRepo] = useState([]);
+    const isFocused = useIsFocused();
 
     useEffect(() => {
-        api.get(`/users/${route.params.user.login}/repos?=100`).then(response => {
+        api.get(`/posts/${route.params.id}/repos`).then(response => {
             setRepo(response.data);
         });
-    },[]);
+    },[isFocused]);
 
     return (
         <View style={styles.container}>
             <View style={styles.lista}>
+                <TouchableOpacity style={styles.newRepo} onPress={() => navigation.navigate('CriarRepositorio')}>
+                    <Text style={styles.newRepoText}>Adicionar novo repositório</Text>
+                </TouchableOpacity>
                 <FlatList
                     data={repo}
                     // ListHeaderComponent={() => 
@@ -69,6 +74,19 @@ const styles = StyleSheet.create({
     },
     repositorioDescricao: {
         fontSize: 14,
+        color: '#999',
+    },
+    newRepo: {
+        width: '100%',
+        height: 50,
+        backgroundColor: '#eee',
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    newRepoText: {
+        fontSize: 16,
         color: '#999',
     },
 });

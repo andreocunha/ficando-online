@@ -14,11 +14,11 @@
 
 ## :information_source: O que é o Ficando Online?
 
-O ficando online é uma aplicação feita em React Native consumindo uma API externa, no caso a API publica do Github. Esse projeto é utilizado no curso 4 da formação inicial de React Native da plataforma da Alura.
+O ficando online é uma aplicação feita em React Native consumindo uma API externa, no caso a API publica do Github ou uma fake api com json-server. Esse projeto é utilizado no curso 4 da formação inicial de React Native da plataforma da Alura.
 
 
 <h1 align="center">
-    <img alt="Demonstracao" title="Demonstracao" src="ficando-online.gif" width="400px" />
+    <img alt="Demonstracao" title="Demonstracao" src="ficando-online-fakeapi.gif" width="400px" />
 </h1>
 
 

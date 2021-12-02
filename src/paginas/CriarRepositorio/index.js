@@ -4,15 +4,21 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Alert } fro
 import api from '../../servicos/api';
 
 export default function Principal({ navigation }) {
-    const [username, setUsername] = useState('');
-    const [user, setUser] = useState({});
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
 
-    function searchUserGithub() {
-        api.get(`/users?login=${username}`).then(response => {
-            setUser(response.data[0]);
-            setUsername('');
-        }).catch(error => {
-            Alert.alert('Atenção:', 'Usuário não encontrado');
+    function createRepo() {
+        api.post('/posts/1/repos', {
+            name,
+            description,
+            postId: 1
+        }).then(() => {
+            Alert.alert('Repositório criado com sucesso!');
+            setName('')
+            setDescription('')
+            navigation.goBack();
+        }).catch(() => {
+            Alert.alert('Erro ao criar o repositório!');
         });
     }
 
@@ -22,35 +28,23 @@ export default function Principal({ navigation }) {
 
             <TextInput
                 placeholder="Digite o usuário do github"
-                value={username}
+                value={name}
                 autoCapitalize="none"
-                onChangeText={setUsername}
+                onChangeText={setName}
                 style={styles.input}
             />
-            <TouchableOpacity style={styles.button} onPress={() => searchUserGithub()}>
+            <TextInput
+                placeholder="Digite o usuário do github"
+                value={description}
+                autoCapitalize="none"
+                onChangeText={setDescription}
+                style={styles.input}
+            />
+            <TouchableOpacity style={styles.button} onPress={() => createRepo()}>
                 <Text style={styles.buttonText}>
-                    Pesquisar
+                    Criar Repositório
                 </Text>
             </TouchableOpacity>
-
-            {
-                !!user?.login && (
-                    <>
-                        <Text>{user?.name}</Text>
-                        <Image source={{ uri: user?.avatar_url }} style={{ width: 200, height: 200 }} />
-                        <View>
-                            <Text>Followers: {user?.followers}</Text>
-                            <Text>Following: {user?.following}</Text>
-                        </View>
-                        <TouchableOpacity style={styles.button}
-                            onPress={() => navigation.navigate('Repositorios', { id: user.id })}>
-                            <Text style={styles.buttonText}>
-                                Ver os repositórios
-                            </Text>
-                        </TouchableOpacity>
-                    </>
-                )
-            }
         </View>
     );
 }

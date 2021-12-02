@@ -6,6 +6,7 @@ const Tab = createNativeStackNavigator();
 
 import Principal from './paginas/Principal';
 import Repositorios from './paginas/Repositorios';
+import CriarRepositorio from './paginas/CriarRepositorio';
 
 export default function Rotas() {
     return (
@@ -13,6 +14,7 @@ export default function Rotas() {
             <Tab.Navigator>
                 <Tab.Screen name="Principal" component={Principal} />
                 <Tab.Screen name="Repositorios" component={Repositorios} />
+                <Tab.Screen name="CriarRepositorio" component={CriarRepositorio} />
             </Tab.Navigator>
         </NavigationContainer>
     );

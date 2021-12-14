@@ -20,37 +20,48 @@ export default function Principal({ navigation }) {
         <View style={styles.container}>
             <StatusBar style="auto" />
 
-            <TextInput
-                placeholder="Digite o usuário do github"
-                value={username}
-                autoCapitalize="none"
-                onChangeText={setUsername}
-                style={styles.input}
-            />
-            <TouchableOpacity style={styles.button} onPress={() => searchUserGithub()}>
-                <Text style={styles.buttonText}>
-                    Pesquisar
-                </Text>
-            </TouchableOpacity>
-
             {
                 !!user?.login && (
                     <>
-                        <Text>{user?.name}</Text>
-                        <Image source={{ uri: user?.avatar_url }} style={{ width: 200, height: 200 }} />
-                        <View>
-                            <Text>Followers: {user?.followers}</Text>
-                            <Text>Following: {user?.following}</Text>
+                        <View style={styles.fundo} />
+                        <View style={styles.imagemArea}>
+                            <Image source={{ uri: user?.avatar_url }} style={styles.imagem} />
                         </View>
-                        <TouchableOpacity style={styles.button}
+                        <Text style={styles.textoNome}>{user?.name}</Text>
+                        <Text style={styles.textoEmail}>{user?.email}</Text>
+                        <View style={styles.seguidoresArea}>
+                            <View style={styles.seguidores}>
+                                <Text style={styles.seguidoresNumero}>{user?.followers}</Text>   
+                                <Text style={styles.seguidoresTexto}>Seguidores</Text>   
+                            </View>
+                            <View style={styles.seguidores}>
+                                <Text style={styles.seguidoresNumero}>{user?.following}</Text>   
+                                <Text style={styles.seguidoresTexto}>Seguindo</Text>   
+                            </View>
+                        </View>
+                        <TouchableOpacity
                             onPress={() => navigation.navigate('Repositorios', { id: user.id })}>
-                            <Text style={styles.buttonText}>
+                            <Text style={styles.repositorios}>
                                 Ver os repositórios
                             </Text>
                         </TouchableOpacity>
                     </>
                 )
             }
+
+            <TextInput
+                placeholder="Busque por um usuário"
+                value={username}
+                autoCapitalize="none"
+                onChangeText={setUsername}
+                style={styles.input}
+            />
+
+            <TouchableOpacity style={styles.button} onPress={() => searchUserGithub()}>
+                <Text style={styles.buttonText}>
+                    Buscar
+                </Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -60,15 +71,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fafafa',
         alignItems: 'center',
-        justifyContent: 'center',
     },
     button: {
-        backgroundColor: '#7159c1',
+        backgroundColor: '#8A07DA',
         marginTop: 20,
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 4,
+        borderRadius: 8,
+        width: '90%',
     },
     buttonText: {
         fontWeight: 'bold',
@@ -81,9 +92,63 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         fontSize: 16,
         color: '#444',
-        marginTop: 20,
-        borderRadius: 4,
+        marginTop: 40,
+        borderRadius: 8,
         height: 44,
-        width: '80%',
+        width: '90%',
+    },
+    imagemArea:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+        marginTop: -75,
+        backgroundColor: '#FFF',
+    },
+    imagem: {
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+    },
+    fundo: {
+        backgroundColor: '#C4C4C4',
+        width: '100%',
+        height: 156,
+    }, 
+    textoNome: {
+        fontSize: 21,
+        fontWeight: '600',
+        color: '#45565F',
+        padding: 15
+    },
+    textoEmail: {
+        fontSize: 17,
+        color: '#717E84',
+        marginTop: 5,
+    },
+    seguidoresArea: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    }, 
+    seguidores: {
+        margin: 20,
+        alignItems: 'center',
+    },
+    seguidoresNumero: {
+        color: '#8A07DA',
+        fontSize: 15,
+    },
+    seguidoresTexto: {
+        color: '#95A8B2',
+        fontSize: 13,
+        marginTop: 5,
+    },
+    repositorios:{
+        color: '#8A07DA',
+        fontSize: 15,
+        fontWeight: '400',
     }
 });

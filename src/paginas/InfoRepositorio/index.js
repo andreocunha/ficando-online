@@ -3,22 +3,24 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, Alert } from 'react-native';
 import api from '../../servicos/api';
 
-export default function CriarRepositorio({ route, navigation }) {
-    const [name, setName] = useState('');
-    const [data, setData] = useState('');
+export default function InfoRepositorio({ route, navigation }) {
+    const [name, setName] = useState(route.params.name);
+    const [data, setData] = useState(route.params.data);
 
-    function createRepo() {
-        api.post('/posts/1/repos', {
+    function salvarRepositorio() {
+        api.put(`/posts/${route.params.id}/repos`, {
+            id: route.params.id,
             name,
             data,
             postId: route.params.id
         }).then(() => {
-            Alert.alert('Repositório criado com sucesso!');
+            Alert.alert('Repositório atualizado com sucesso!');
             setName('')
             setData('')
             navigation.goBack();
-        }).catch(() => {
-            Alert.alert('Erro ao criar o repositório!');
+        }).catch((e) => {
+            Alert.alert('Erro ao atualizar o repositório!');
+            console.log(e);
         });
     }
 
@@ -40,9 +42,20 @@ export default function CriarRepositorio({ route, navigation }) {
                 onChangeText={setData}
                 style={styles.input}
             />
-            <TouchableOpacity style={styles.button} onPress={() => createRepo()}>
+            <TouchableOpacity 
+                style={styles.button} 
+                onPress={() => salvarRepositorio()}
+            >
                 <Text style={styles.buttonText}>
-                    Criar
+                    Salvar
+                </Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                style={[styles.button, {backgroundColor: '#DD2B2B', marginTop: 10}]} 
+                onPress={() => salvarRepositorio()}
+            >
+                <Text style={styles.buttonText}>
+                    Deletar
                 </Text>
             </TouchableOpacity>
         </View>
@@ -58,7 +71,7 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#8A07DA',
-        marginTop: 20,
+        marginTop: 50,
         padding: 10,
         alignItems: 'center',
         justifyContent: 'center',

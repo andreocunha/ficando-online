@@ -15,26 +15,27 @@ export default function Repositorios({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.lista}>
-                <TouchableOpacity style={styles.newRepo} onPress={() => navigation.navigate('CriarRepositorio')}>
-                    <Text style={styles.newRepoText}>Adicionar novo repositório</Text>
+                <Text style={styles.repositoriosTexto}>{repo.length} repositórios criados</Text>
+                <TouchableOpacity 
+                    style={styles.botao} 
+                    onPress={() => navigation.navigate('CriarRepositorio', { id: route.params.id })}
+                >
+                    <Text style={styles.botaoTexto}>Adicionar novo repositório</Text>
                 </TouchableOpacity>
                 <FlatList
                     data={repo}
-                    // ListHeaderComponent={() => 
-                    //     <Text style={styles.titulo}>Repositorios</Text>
-                    // }
+                    style={{ width: '100%' }}
                     keyExtractor={repo => repo.id}
                     renderItem={({ item }) => (
                         <TouchableOpacity 
                             style={styles.repositorio}
+                            onPress={() => navigation.navigate('InfoRepositorio', { id: item.id, name: item.name, data: item.data, postId: item.postId })}
                         >
                             <Text style={styles.repositorioNome}>{item.name}</Text>
-                            <Text style={styles.repositorioDescricao}>{item.description}</Text>
+                            <Text style={styles.repositorioData}>Atualizado em {item.data}</Text>
                         </TouchableOpacity>
                     )}
                 />
-            </View>
         </View>
     );
 }
@@ -46,6 +47,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    repositoriosTexto: {
+        fontSize: 21,
+        fontWeight: '600',
+        color: '#45565F',
+        marginTop: 20,
+    },
     titulo: {
         fontSize: 20,
         fontWeight: 'bold',
@@ -53,15 +60,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
     },
-    lista: {
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'gray',
-    },
     repositorio: {
         width: '100%',
         height: 80,
-        backgroundColor: '#fff',
+        backgroundColor: '#FFF',
         borderBottomWidth: 1,
         borderBottomColor: '#ddd',
         paddingHorizontal: 20,
@@ -72,21 +74,22 @@ const styles = StyleSheet.create({
         color: '#444',
         fontWeight: 'bold',
     },
-    repositorioDescricao: {
+    repositorioData: {
         fontSize: 14,
         color: '#999',
     },
-    newRepo: {
-        width: '100%',
-        height: 50,
-        backgroundColor: '#eee',
-        borderBottomWidth: 1,
-        borderBottomColor: '#ddd',
-        justifyContent: 'center',
+    botao: {
+        backgroundColor: '#8A07DA',
+        marginTop: 20,
+        marginBottom: 30,
+        padding: 10,
         alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 8,
+        width: '90%',
     },
-    newRepoText: {
+    botaoTexto: {
         fontSize: 16,
-        color: '#999',
+        color: '#FFF',
     },
 });

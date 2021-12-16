@@ -3,18 +3,22 @@
 </h1>
 
 <h4 align="center"> 
-	Ficando Online 
+	AluraHub 
 </h4>
 
 <p align="center">
-  <a href="#information_source-o-que-é-o-ficando-online">O que é o Ficando Online?</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#information_source-o-que-é-o-ficando-online">O que é o AluraHub?</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-Tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-como-usar">Como usar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-## :information_source: O que é o Ficando Online?
+## :information_source: O que é o AluraHub?
 
-O ficando online é uma aplicação feita em React Native consumindo uma API externa, no caso a API publica do Github ou uma fake api com json-server. Esse projeto é utilizado no curso 4 da formação inicial de React Native da plataforma da Alura.
+O AluraHub é uma aplicação feita em React Native que permite salvar um perfil com informações como nome da pessoa e uma foto, e possibilita consultar um repositório que armazena dados.
+
+Como ele funciona? O app consome uma API externa, no caso, a API pública do Github ou uma fake API com json-server.
+
+Esse projeto é utilizado no curso 4 da formação base de React Native da plataforma da Alura.
 
 
 <h1 align="center">
@@ -24,15 +28,15 @@ O ficando online é uma aplicação feita em React Native consumindo uma API ext
 
 ## :rocket: Tecnologias
 
-Esse projeto foi desenvolvido usando as seguintes tecnologias:
+Esse projeto foi desenvolvido com a utilização das seguintes tecnologias:
 - [React Native][rn]
 - [Expo][expo]
 
 ## :information_source: Como usar
 
-Para copiar e executar essa aplicação você precisa do [Git](https://git-scm.com), [Node.js][nodejs] + [Yarn][yarn] intalados no seu computador.
+Para copiar e executar essa aplicação, você precisa de três pré-requisitos: [Git](https://git-scm.com), [Node.js][nodejs] + [Yarn][yarn] intalados no seu computador.
 
-No terminal digite:
+No terminal, digite os comandos a seguir:
 
 ### Instalar Mobile
 
@@ -50,8 +54,7 @@ $ npm install
 $ expo start
 
 ```
-
-Feito por André Oliveira Cunha :wave: [Linkedin](https://www.linkedin.com/in/andr%C3%A9-oliveira-cunha-b26b3a156/)
+Espero que você utilize ao máximo deste projeto para se aprimorar! E se quiser dar um salve, estou lá no LinkedIn [André Oliveira Cunha](https://www.linkedin.com/in/andr%C3%A9-oliveira-cunha-b26b3a156/). :wave: 
 
 [nodejs]: https://nodejs.org/
 [expo]: https://expo.io/

@@ -8,7 +8,7 @@ export default function CriarRepositorio({ route, navigation }) {
     const [data, setData] = useState('');
 
     function createRepo() {
-        api.post('/posts/1/repos', {
+        api.post('/repos', {
             name,
             data,
             postId: route.params.id

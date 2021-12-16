@@ -18,7 +18,7 @@ O ficando online é uma aplicação feita em React Native consumindo uma API ext
 
 
 <h1 align="center">
-    <img alt="Demonstracao" title="Demonstracao" src="ficando-online-fakeapi.gif" width="400px" />
+    <img alt="Demonstracao" title="Demonstracao" src="ficando-online-newdesign.gif" width="400px" />
 </h1>
 
 

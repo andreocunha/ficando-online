@@ -8,11 +8,11 @@ export default function InfoRepositorio({ route, navigation }) {
     const [data, setData] = useState(route.params.data);
 
     function salvarRepositorio() {
-        api.put(`/posts/${route.params.id}/repos`, {
+        api.put(`/repos/${route.params.id}`, {
             id: route.params.id,
             name,
             data,
-            postId: route.params.id
+            postId: route.params.postId
         }).then(() => {
             Alert.alert('Repositório atualizado com sucesso!');
             setName('')
@@ -24,6 +24,14 @@ export default function InfoRepositorio({ route, navigation }) {
         });
     }
 
+    function deletarRepositorio() {
+        api.delete(`/repos/${route.params.id}`).then(() => {
+            Alert.alert('Repositório deletado com sucesso!');
+            navigation.goBack();
+        }).catch((e) => {
+            Alert.alert('Erro ao atualizar o repositório!');
+        });
+    }
     return (
         <View style={styles.container}>
             <StatusBar style="auto" />
@@ -52,7 +60,7 @@ export default function InfoRepositorio({ route, navigation }) {
             </TouchableOpacity>
             <TouchableOpacity 
                 style={[styles.button, {backgroundColor: '#DD2B2B', marginTop: 10}]} 
-                onPress={() => salvarRepositorio()}
+                onPress={() => deletarRepositorio()}
             >
                 <Text style={styles.buttonText}>
                     Deletar
